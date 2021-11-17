@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Reboot into Windows
+Exec=pkexec /home/vasi/src/refind-switch/boot-windows.sh
+Comment=
+Terminal=false
+Type=Application
+Icon=/home/vasi/src/refind-switch/win11.png
