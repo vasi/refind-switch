@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Reboot into Windows
-Exec=pkexec /home/vasi/src/refind-switch/boot-windows.sh
+Exec=/home/vasi/src/refind-switch/boot-windows.sh
 Comment=
 Terminal=false
 Type=Application

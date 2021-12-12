@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-if [ "$UID" = 0 ]; then
+if [ "$USER" = root ]; then
   # Rewrite the file
   prevboot="/boot/efi/EFI/refind/vars/PreviousBoot"
   if [ ! -f "$prevboot" ]; then
@@ -11,5 +11,5 @@ if [ "$UID" = 0 ]; then
   echo -n "Boot Microsoft EFI Boot" | iconv -t utf16le > "$prevboot"
 else
   # Rerun as root, then reboot
-  pkexec "$0" && gnome-session-quit --reboot
+  pkexec "$0" && qdbus org.kde.Shutdown /Shutdown logoutAndReboot
 fi
