@@ -1,14 +1,14 @@
 #!/bin/sh -e
 
-if [ "$UID" = 0 ]; then
+refind_vars="/boot/efi/EFI/refind/vars"
+if [ -w "$refind_vars" ]; then
   # Rewrite the file
-  prevboot="/boot/efi/EFI/refind/vars/PreviousBoot"
-  if [ ! -f "$prevboot" ]; then
-    echo "Can't find PreviousBoot file"
-    exit 1
-  fi
-
+  prevboot="$refind_vars/PreviousBoot"
   echo -n "Boot Microsoft EFI Boot" | iconv -t utf16le > "$prevboot"
+elif [ $(id -u) = 0 ]; then
+  # Already root, maybe there's no refind?
+  echo "No refind vars found"
+  exit -1
 else
   # Rerun as root, then reboot
   pkexec "$0" && gnome-session-quit --reboot
