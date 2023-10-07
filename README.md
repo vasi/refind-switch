@@ -28,8 +28,10 @@ You can probably work around any of these that are different, this is all custom
 
 ## Windows
 
+* If necessary, allow PowerShell scripts to run by following [Microsoft's documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3). Eg: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. You may also need to `Unblock-File BootLinux.ps1`.
 * Create a shortcut to BootLinux.ps1
 * Open the shortcut's properties, and in the Shortcut pane change the Command so it reads `powershell -f C:\path\to\BootLinux.ps1`
+    * In the Advanced dialog, make it Run as Administrator
 * Put the shortcut in `%appdata%\Microsoft\Windows\Start Menu`, so it shows up in your Start menu. Give it a name like "Reboot into Linux"
 * To reboot into Linux, just select "Reboot into Linux" from the Start menu.
 
