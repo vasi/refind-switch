@@ -10,6 +10,11 @@ elif [ $(id -u) = 0 ]; then
   echo "No refind vars found"
   exit -1
 else
+  quit_cmd="gnome-session-quit --reboot"
+  if [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
+    quit_cmd="qdbus org.kde.Shutdown /Shutdown logoutAndReboot"
+  fi
+  
   # Rerun as root, then reboot
-  pkexec "$0" && gnome-session-quit --reboot
+  pkexec "$0" && $quit_cmd
 fi
