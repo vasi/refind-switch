@@ -1,6 +1,16 @@
 #!/bin/sh -e
 
-refind_vars="/boot/efi/EFI/refind/vars"
+if [ -d "/efi" ]; then
+  esp="/efi"
+elif [ -d "/boot/efi" ]; then
+  esp="/boot/efi"
+fi
+if [ -z "$esp" ]; then
+  echo "No ESP found"
+  exit -1
+fi
+
+refind_vars="$esp/EFI/refind/vars"
 if [ -w "$refind_vars" ]; then
   # Rewrite the file
   prevboot="$refind_vars/PreviousBoot"
