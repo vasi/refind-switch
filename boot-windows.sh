@@ -21,7 +21,7 @@ elif [ $(id -u) = 0 ]; then
   exit -1
 else
   case "$XDG_CURRENT_DESKTOP" in
-    Gnome) quit_cmd="gnome-session-quit --reboot" ;;
+    Gnome|GNOME) quit_cmd="gnome-session-quit --reboot" ;;
     *Cinnamon) quit_cmd="cinnamon-session-quit --reboot" ;;
     KDE) quit_cmd="qdbus org.kde.Shutdown /Shutdown logoutAndReboot" ;;
     *) echo "Don't know how to restart"; exit -1 ;;
